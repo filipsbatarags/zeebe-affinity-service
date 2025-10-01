@@ -46,7 +46,7 @@ class ZBAffinityClient extends zeebe_node_1.ZBClient {
     async createProcessInstanceWithAffinity({ bpmnProcessId, variables, cb, }) {
         await this.waitForAffinity();
         // TODO check for error creating process to prevent registering callback?
-        const wfi = await super.createProcessInstance(bpmnProcessId, variables);
+        const wfi = await super.createProcessInstance({bpmnProcessId, variables});
         if (this.affinityService) {
             this.affinityCallbacks[wfi.processInstanceKey] = cb; // Register callback for application code
         }
