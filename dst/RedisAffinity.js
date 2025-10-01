@@ -66,7 +66,7 @@ class RedisAffinity extends zeebe_node_1.ZBClient {
     async createProcessInstanceWithAffinity({ bpmnProcessId, variables, cb, }) {
         try {
             // create process instance (ZB client)
-            const wfi = await super.createProcessInstance(bpmnProcessId, variables);
+            const wfi = await super.createProcessInstance({bpmnProcessId, variables});
             this.affinityCallbacks[wfi.processInstanceKey] = cb;
             this.subscriber.subscribe(wfi.processInstanceKey, () => {
                 console.log(`Subscribe to channel ${wfi.processInstanceKey}`);
