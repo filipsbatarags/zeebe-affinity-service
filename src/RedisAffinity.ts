@@ -87,10 +87,10 @@ export class RedisAffinity extends ZBClient {
     }): Promise<void> {
         try {
             // create process instance (ZB client)
-            const wfi = await super.createProcessInstance(
+            const wfi = await super.createProcessInstance({
                 bpmnProcessId,
                 variables,
-            );
+            });
 
             this.affinityCallbacks[wfi.processInstanceKey] = cb;
 
